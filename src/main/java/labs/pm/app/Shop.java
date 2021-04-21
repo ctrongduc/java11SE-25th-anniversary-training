@@ -61,5 +61,8 @@ public class Shop {
         Comparator<Product> ratingSorter = (p1, p2) -> p2.getRating().ordinal() - p1.getRating().ordinal();
         Comparator<Product> priceSorter = (p1, p2) -> p2.getPrice().compareTo(p1.getPrice());
         pm.printProducts(ratingSorter.thenComparing(priceSorter.reversed()));
+        pm.printProducts(p -> p.getPrice().doubleValue() < 2.0, ratingSorter.thenComparing(priceSorter.reversed()));
+
+        pm.getDiscount().forEach((rating, discount) -> System.out.println(rating + ' ' +discount));
     }
 }
